@@ -1,0 +1,4 @@
+<?php
+    $nid=$_GET['id'];
+    echo "<script> alert($nid); </script>";
+?>

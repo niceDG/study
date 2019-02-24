@@ -1,0 +1,69 @@
+{include file='index/header' /}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http:// www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" href="__STATIC__/admin/css/bootstrap.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>test</title>
+</head>
+<?php
+    $nid=$_GET['id'];
+    $nid = str_replace("'","",$nid );
+    $conn = new mysqli('localhost','jsj16103','12345678','jsj16103');
+    $conn->query("set names utf8");
+    $result = $conn->query("select username,goods,title,describegoods,phonenum,img,datatime from releasegoods where id = '$nid' ");
+    $goods_array = array();
+    while($row=mysqli_fetch_array($result)){
+        $goods_array[0]=$row[0];
+        $goods_array[1]=$row[1];
+        $goods_array[2]=$row[2];
+        $goods_array[3]=$row[3];
+        $goods_array[4]=$row[4];
+        $goods_array[5]=$row[5];
+        $goods_array[6]=$row[6];
+    }
+?>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						id：<?php echo $nid; ?>
+					</h3>
+				</div>
+				<div class="panel-body">
+					二手物品：<?php echo $goods_array[1] ?>
+				</div>
+				<div class="panel-body">
+		            标题：<?php echo $goods_array[2] ?>
+				</div>
+				<div class="panel-body">
+					物品详细描述：<?php echo $goods_array[3] ?>
+				</div>
+				<div class="panel-body">
+					联系方式：<?php echo $goods_array[4] ?>
+				</div>
+				<div class="panel-footer">
+					发布时间：<?php echo $goods_array[6] ?>
+                   <center> <button type="button" class="btn btn-default" onclick="javascript:history.back(-1);">返回</button></center>
+				</div>
+			</div>
+            <div class="container">
+                物品实物图：<br>
+                <div class="row clearfix">
+                    <div class="col-sm-6 col-md-3">
+                        <a href="__STATIC__<?php echo $goods_array[5] ?>" class="thumbnail">
+                            <img  src="__STATIC__<?php echo $goods_array[5] ?>" alt="slt">
+                        </a>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+<script src="__STATIC__/admin/js/jquery.js"></script>
+<script src="__STATIC__/admin/js/bootstrap.js"></script>
+</body>
+</html>
