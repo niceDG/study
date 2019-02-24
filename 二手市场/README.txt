@@ -1,0 +1,1 @@
+这是一个简易的二手市场交易平台。采用了ThinkPHP+bootstrap开发。
